@@ -54,5 +54,23 @@ console.log(`${radius} dagi aylananing perimetri ${perimeter}`)
 
 
 //Task-7
-let a7 = "3+3+1";
+let a7 = `` + 3 + 1;
 console.log(a7)
+
+//https://hate.tg/
+
+//Task-7
+let a8 = 123;
+let radar = 100 <= a8
+console.log("Radarning javobi: " + radar)
+
+
+// Task7  in lesson
+let kasrliSonmi = 12.13;
+let son = kasrliSonmi % 1 !== 0 && kasrliSonmi < 0 && kasrliSonmi < -99 && kasrliSonmi > -1000;
+
+//Task-8
+let a9 = 223;
+let radar2 = 40 >= a9 || 200 <= a9
+console.log("Radarning javobi: " + radar2)
+
