@@ -23,6 +23,7 @@ switch (amal) {
         console.log("Invalid amal");
         break;
 }
+
 if (result !== undefined) {
     document.body.innerHTML = `<h1>${num1} ${amal} ${num2} = ${result}</h1>`
 }
