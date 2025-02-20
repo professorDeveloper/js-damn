@@ -1,15 +1,15 @@
 /*
  * Copyright (c) 2025.  Azamov
  */
-let ball = 50
+let ball = Number(prompt("Enter ball:"))
 
 ball > 60 ? console.log("Imtihondan o`tdi") : console.log("Imtihondan o`tmadi")
 
 
-let havo = 40
+let havo = Number(prompt("Ob-Havo:"))
 havo > 30 ? console.log("Issiq obhavo") : console.log("Salqin ob-havo")
 
-let speed = 70
+let speed = Number(prompt("Tezlik:"))
 
 speed > 80 ? console.log("Jarima") : console.log("Tezlik meyorda")
 
