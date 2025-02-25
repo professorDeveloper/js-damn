@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2025.  Azamov
+ * Copyrig
+ * ht (c) 2025.  Azamov
  */
 
 num1=Number(prompt("Enter number1:"))
@@ -27,3 +28,7 @@ switch (amal) {
 if (result !== undefined) {
     document.body.innerHTML = `<h1>${num1} ${amal} ${num2} = ${result}</h1>`
 }
+
+
+
+
