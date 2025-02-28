@@ -51,3 +51,11 @@ for (let i = 0; i < userInput.length; i++) {
 }
 
 console.log(`Matnda ${countNumbers} ta raqam bor.`);
+
+
+// Array  in js
+
+const sonlar2 =Array(5)
+console.log(sonlar2)
+console.log(sonlar2[2])
+
