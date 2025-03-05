@@ -54,6 +54,8 @@ if (students.length > 0) {
     console.log("Bunday talaba mavjud emas")
 }
 
+
+
 //Task10
 let dataCount = Number(prompt("Data sonini kiriting:"))
 let datas = []
@@ -105,3 +107,5 @@ for (let i = 0; i < datas13.length; i++) {
 }
 console.log(n13)
 console.log(`Kiritilgan malumotlar ichida ${count13} ta malumot takrorlangan`)
+
+
