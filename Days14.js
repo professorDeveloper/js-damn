@@ -11,7 +11,17 @@ const Student = {
 }
 
 let {name, age, phone} = Student.info
-console.log(
-    `Student name :${name}`
-)
+console.log(`Student name :${name}`)
 console.log(`Student subjects ${age}`)
+
+
+class MathTeacher {
+    constructor(name, age, phone, salary, totalSubjectCount) {
+        this.name = name
+        this.age = age
+        this.phone = phone
+        this.salary = salary
+        this.totalSubjectCount = totalSubjectCount
+
+    }
+}
