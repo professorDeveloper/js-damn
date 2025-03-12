@@ -1,0 +1,19 @@
+{
+  "AuthorInfo": [
+    {
+      "ID" : 1,
+      "Author Name" : "Azamov",
+      "Age" : 20,
+      "Skillsets": "Java Developer",
+      "NumberOfPosts": 5
+    },
+
+    {
+      "ID" : 1,
+      "Author Name" : "Azamov",
+      "Age" : 20,
+      "Skillsets": "Java Developer",
+      "NumberOfPosts": 5
+    }
+  ]
+}
