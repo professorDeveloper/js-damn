@@ -18,8 +18,24 @@
 customPrompt(num => {
     console.log(num)
 })
-
 function customPrompt(callBack) {
     let num = Number(prompt("Num:"))
     callBack(num)
+}
+
+
+totalCountOfElemetns(12,123,123,123,123,"qwdqd","QWd",1.23)
+
+
+//Shunday funksiya yarating unga ixiyiroyi element kirib kelsin
+// funksiyani vazifasi shu kirib kelgan argumentlar ichidan nechta son borligini aniqlash
+
+function totalCountOfElemetns(...args) {
+    let count = 0
+    for (let i = 0; i < args.length; i++) {
+        if (!isNaN(args[i])) {
+            count++
+        }
+    }
+    console.log(`Total Elemetns Count ${count}`)
 }
