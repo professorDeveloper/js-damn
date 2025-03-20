@@ -11,12 +11,13 @@ makePay("Azamov", pay => {
     alert(pay)
 })
 
-internetConnectionCheker(() => {
-    alert("Internetga ulandi")
-}, () => {
-    alert("Internetga ulanmadi")
+internetConnectionCheker(
+    (isOnlineHolati) => {
+        alert("Internetga ulandi")
+    }, (isOfflineHolati) => {
+        alert("Internetga ulanmadi")
 
-})
+    })
 
 let filteredList = customFilterCallback([2, 12, 55, 66, 24, 54, 31, 23, 1, 3], (item, index, arr) => {
     return item % 2 === 0
@@ -77,5 +78,5 @@ function goMarketAndGetSomeThing(callBack) {
     alert(`Buyurtma taxminan ${randomTime / 1000} soniyada qabul qilinadi`);
     setTimeout(() => {
         callBack("Buyurtma qabul qilindi")
-    },)
+    }, randomTime)
 }

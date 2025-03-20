@@ -1,0 +1,43 @@
+<!--
+  ~ Copyright (c) 2025.  Azamov
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+
+    </title>
+</head>
+<body>
+<button class="show">Show Salom Dunyo</button>
+<button style="color:red;" class="qizil">Qizil</button>
+<button style="color:green;" class="yashil">Yashil</button>
+<button style="color:blue;" class="kok">Kok</button>
+<button style="color:yellow;" class="sariq">Sariq</button>
+</body>
+<script>
+    let show = document.querySelector(".show")
+    let qizil = document.querySelector(".qizil")
+    let yashil = document.querySelector(".yashil")
+    let kok = document.querySelector(".kok")
+    let sariq = document.querySelector(".sariq")
+    show.addEventListener("click", function () {
+        show.style.backgroundColor = "white"
+    })
+    qizil.addEventListener("click", function () {
+        show.style.color = "red"
+    })
+    yashil.addEventListener("click", function () {
+        show.style.color = "green"
+    })
+    kok.addEventListener("click", function () {
+        show.style.color = "blue"
+    })
+    sariq.addEventListener("click", function () {
+        show.style.color = "yellow"
+    })
+
+</script>
+</html>

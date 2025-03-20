@@ -1,4 +1,8 @@
-<!doctype html>
+<!--
+  ~ Copyright (c) 2025.  Azamov
+  -->
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -32,14 +36,14 @@
             flex-direction: column;
             width: 100%;
             height: 100vh;
-
             justify-content: center;
+
             align-items: center;
+
         }
 
         .buttonContainer {
             display: flex;
-            flex-direction: row;
             width: 100px;
         }
     </style>
@@ -53,11 +57,36 @@
         <br>
     </div>
     <div class="buttonContainer">
-        <button id="count_plus">Count + </button>
-        <button id="count_minus">Count - </button>
+        <button id="twoPlus">+2</button>
+        <button id="twoMultply">*2</button>
+        <button id="divide5">/5</button>
+        <button id="minus3">-3</button>
     </div>
 
 </div>
-<script src="/dom_learn/DomWhat.js"></script>
+<script>
+    let twoPlusBtn =document.getElementById("twoPlus")
+    let twoMultply =document.getElementById("twoMultply")
+    let divide5 =document.getElementById("divide5")
+    let minus3 =document.getElementById("minus3")
+    let count = 0
+    let textCount = document.getElementById("textCount")
+    twoPlusBtn.addEventListener("click",function () {
+        count+=2
+        textCount.innerHTML = "Count: " + count
+    })
+    twoMultply.addEventListener("click",function () {
+        count*=2
+        textCount.innerHTML = "Count: " + count
+    })
+    divide5.addEventListener("click",function () {
+        count/=5
+        textCount.innerHTML = "Count: " + count
+    })
+    minus3.addEventListener("click",function () {
+        count-=3
+        textCount.innerHTML = "Count: " + count
+    })
+</script>
 </body>
 </html>
