@@ -1,0 +1,48 @@
+<!--
+  ~ Copyright (c) 2025.  Azamov
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="text-content"><p> Group 202 </p></div>
+    <div class="buttons">
+        <button class="btnPlus">Size ni 2px ga oshirish</button>
+        <button class="btnMinus">Size ni 2px ga kamaytirish</button>
+
+    </div>
+
+</div>
+
+<script>
+    let btn1 = document.querySelector(".btnPlus")
+    let btn2 = document.querySelector(".btnMinus")
+    let text = document.querySelector(".text-content")
+    let currentTextSize = parseFloat(window.getComputedStyle(text).fontSize)
+    btn1.addEventListener("click", function () {
+        if (currentTextSize<50) {
+            alert(text.style.fontSize.replace("px"),)
+            text.style.fontSize = (currentTextSize + 2) + "px";
+            currentTextSize = parseFloat(window.getComputedStyle(text).fontSize) + 2
+        }
+    })
+    btn2.addEventListener("click", function () {
+        if (currentTextSize>10) {
+
+            text.style.fontSize = (currentTextSize - 2) + "px";
+            currentTextSize = parseFloat(window.getComputedStyle(text).fontSize) - 2
+        }
+    })
+    btn2.addEventListener("mouseover", function () {
+
+    })
+</script>
+
+</body>
+</html>

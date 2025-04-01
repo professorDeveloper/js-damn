@@ -1,0 +1,43 @@
+<!--
+  ~ Copyright (c) 2025.  Azamov
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="main">
+
+</div>
+<script>
+    const pD = document.createElement("p")
+    pD.textContent = "World"
+    pD.style.color = "red"
+    pD.style.fontFamily = "monospace"
+    // Append child parentning eng oxiridan yangi elementni qoshadi
+    //parentga child sifatida yaratgan elementni qoshish
+    let mainContainer =document.querySelector(".main")
+    mainContainer.appendChild(pD)
+
+    // Before
+    const pD1 = document.createElement("p")
+    pD1.textContent = "Hello"
+    pD1.style.color = "green"
+    pD1.style.fontFamily = "monospace"
+    mainContainer.before(pD1)
+
+    // After
+    const pD2 = document.createElement("p")
+    pD2.textContent = "!"
+    pD2.style.color = "blue"
+    pD2.style.fontFamily = "monospace"
+    mainContainer.after(pD2)
+    document.querySelectorAll("p").forEach((p) => {
+        p.style.fontSize = "20px"
+    })
+</script>
+</body>
+</html>

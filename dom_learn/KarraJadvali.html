@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 dan 9 gacha Karra Jadvali</title>
+</head>
+<body>
+<h1>1 dan 9 gacha Karra Jadvali</h1>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Raqam</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+    </tr>
+
+    <script>
+        
+        for (let i = 1; i <= 9; i++) {
+            document.write('<tr>');
+            document.write('<td>' + i + '</td>');
+            for (let j = 1; j <= 9; j++) {
+                document.write('<td>' + i * j + '</td>');
+            }
+            document.write('</tr>');
+        }
+    </script>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!--
+  ~ Copyright (c) 2025.  Azamov 
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            background-color: #594b4b;
+        }
+
+        button {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            width: 100%;
+            color: white;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            background-color: #6698c9;
+        }
+    </style>
+</head>
+<body>
+<div>
+    Text1
+</div>
+
+<div>
+    Text2
+</div>
+
+<div>
+    Text3
+</div>
+
+<div>
+    Text4
+</div>
+
+<button>
+    Change Style
+</button>
+
+<script>
+    let btn = document.querySelector("button")
+    let divs = document.querySelectorAll("div")
+    btn.addEventListener("dblclick", {
+        handleEvent() {
+            for (let i = 0; i < divs.length; i++) {
+                divs[i].style.backgroundColor = "#6698c9"
+                divs[i].style.color = "white"
+            }
+
+            btn.style.backgroundColor = "#594b4b"
+        }
+    })
+    btn.addEventListener("click", {
+        handleEvent() {
+            for (let i = 0; i < divs.length; i++) {
+                divs[i].style.backgroundColor = "#594b4b"
+                divs[i].style.color = "white"
+            }
+
+            btn.style.backgroundColor = "#6698c9"
+        }
+    })
+</script>
+</body>
+</html>
