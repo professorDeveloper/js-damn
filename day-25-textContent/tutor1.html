@@ -7,37 +7,152 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .main {
+            display: flex;
+            width: 100%;
+            justify-content: start;
+            flex-direction: row;
+        }
+
+        .juftContainer {
+            display: flex;
+
+            flex-direction: column;
+            margin-left: 480px;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100%;
+        }
+
+        .toqContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 200px;
+            align-items: center;
+            width: 100px;
+            height: 100%;
+        }
+
+        .tupContainer {
+            display: flex;
+
+            flex-direction: column;
+            margin-left: 400px;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100%;
+        }
+
+        .buttons {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .toqSonlar {
+            width: 100px;
+            height: 40px;
+            margin-right: 400px;
+            background-color: burlywood;
+        }
+
+        .juftSonlar {
+            width: 100px;
+            height: 40px;
+            margin-right: 400px;
+            background-color: darkkhaki;
+        }
+
+        .tupSonlar {
+            width: 100px;
+            height: 40px;
+            background-color: darkolivegreen;
+        }
+    </style>
 </head>
 <body>
-<div class="main">
+<div class="buttons">
+    <button class="toqSonlar">
+        Toq sonlar
+    </button>
+    <br>
+    <button class="juftSonlar">
+        Juft Sonlar
+    </button>
+    <br>
+    <button class="tupSonlar">Tup sonlar</button>
+</div>
 
+<div class="main">
+    <div class="toqContainer"></div>
+    <div class="juftContainer"></div>
+    <div class="tupContainer"></div>
 </div>
 <script>
-    const pD = document.createElement("p")
-    pD.textContent = "World"
-    pD.style.color = "red"
-    pD.style.fontFamily = "monospace"
-    // Append child parentning eng oxiridan yangi elementni qoshadi
-    //parentga child sifatida yaratgan elementni qoshish
-    let mainContainer =document.querySelector(".main")
-    mainContainer.appendChild(pD)
+    let buttonToq = document.querySelector(".toqSonlar")
+    let buttonJuft = document.querySelector(".juftSonlar")
+    let buttonTup = document.querySelector(".tupSonlar")
+    let isAlready = false
+    buttonToq.onclick = function () {
+        if (!isAlready) {
+            for (let i = 1; i <= 100; i++) {
+                if (i % 2 !== 0) {
+                    const pD = document.createElement("p")
+                    pD.textContent = i
+                    pD.style.color = "red"
+                    pD.style.fontFamily = "monospace"
+                    document.querySelector(".toqContainer").appendChild(pD)
+                }
+            }
+            isAlready = true
+        }
+    }
+    let isAlready2 = false
+    buttonJuft.onclick = function () {
+        if (!isAlready2) {
+            for (let i = 1; i <= 100; i++) {
+                if (i % 2 === 0) {
+                    const pD = document.createElement("p")
+                    pD.textContent = i
+                    pD.style.color = "green"
+                    pD.style.fontFamily = "monospace"
+                    document.querySelector(".juftContainer").appendChild(pD)
+                }
+            }
+            isAlready2 = true
+        }
+    }
+    let isAlready3 = false
+    buttonTup.onclick = function () {
+        if (!isAlready3) {
+            for (let i = 1; i <= 100; i++) {
+                if (checkTup(i)) {
+                    const pD = document.createElement("p")
+                    pD.textContent = i
+                    pD.style.color = "blue"
+                    pD.style.fontFamily = "monospace"
+                    document.querySelector(".tupContainer").appendChild(pD)
+                }
+            }
+            isAlready3 = true
+        }
+    }
 
-    // Before
-    const pD1 = document.createElement("p")
-    pD1.textContent = "Hello"
-    pD1.style.color = "green"
-    pD1.style.fontFamily = "monospace"
-    mainContainer.before(pD1)
+    function checkTup(son) {
+        let count = 0
+        for (let i = 1; i <= son; i++) {
+            if (son % i === 0) {
+                count++
+            }
+        }
+        return count === 2;
 
-    // After
-    const pD2 = document.createElement("p")
-    pD2.textContent = "!"
-    pD2.style.color = "blue"
-    pD2.style.fontFamily = "monospace"
-    mainContainer.after(pD2)
-    document.querySelectorAll("p").forEach((p) => {
-        p.style.fontSize = "20px"
-    })
+    }
 </script>
 </body>
 </html>
