@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Mahsulotlar Ro'yxati</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            flex-grow: 1;
+            text-align: center;
+            color: #333;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 0 10px;
+            color: #333;
+        }
+
+
+        .topBar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        input {
+            padding: 10px;
+            width: 98%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="topBar">
+        <h1>Mahsulotlar Ro'yxati</h1></div>
+    <input class="searchBar" type="text" id="searchInput" placeholder="Mahsulot nomini kiriting">
+</div>
+<script>
+    let containerRoot = document.querySelector(".container");
+    const products = [
+        {
+            id: 1,
+            name: "Apple iPhone 15",
+            price: 999.99,
+            quantity: 1,
+            category: "Electronics",
+            purchaseDate: "2025-03-11T14:30:00Z",
+            details: {
+                brand: "Apple",
+                color: "Black",
+                storage: "128GB",
+                warranty: "1 year"
+            }
+        },
+        {
+            id: 2,
+            name: "Nike Air Max",
+            price: 120.50,
+            quantity: 2,
+            category: "Footwear",
+            purchaseDate: "2025-03-10T16:15:00Z",
+            details: {
+                brand: "Nike",
+                color: "White",
+                size: "42",
+                material: "Leather"
+            }
+        },
+        {
+            id: 3,
+            name: "Samsung 65\" QLED TV",
+            price: 1299.99,
+            quantity: 1,
+            category: "Home Appliances",
+            purchaseDate: "2025-03-09T10:00:00Z",
+            details: {
+                brand: "Samsung",
+                screenSize: "65 inches",
+                resolution: "4K UHD",
+                smartTV: true
+            }
+        },
+        {
+            id: 4,
+            name: "Adidas Backpack",
+            price: 45.99,
+            quantity: 1,
+            category: "Accessories",
+            purchaseDate: "2025-03-08T18:45:00Z",
+            details: {
+                brand: "Adidas",
+                color: "Blue",
+                material: "Polyester",
+                capacity: "20L"
+            }
+        },
+        {
+            id: 5,
+            name: "Logitech MX Master 3",
+            price: 99.99,
+            quantity: 1,
+            category: "Computers",
+            purchaseDate: "2025-03-07T12:30:00Z",
+            details: {
+                brand: "Logitech",
+                color: "Gray",
+                connection: "Wireless",
+                batteryLife: "70 days"
+            }
+        },
+        {
+            id: 6,
+            name: "Apple iPhone 16",
+            price: 1099.99,
+            quantity: 2,
+            category: "Electronics",
+            purchaseDate: "2025-03-11T14:30:00Z",
+            details: {
+                brand: "Apple",
+                color: "Black",
+                storage: "256GB",
+                warranty: "1 year"
+            }
+        },
+        {
+            id: 7,
+            name: "Samsung 95\" QLED TV",
+            price: 2299.99,
+            quantity: 10,
+            category: "Home Appliances",
+            purchaseDate: "2025-03-09T10:00:00Z",
+            details: {
+                brand: "Samsung",
+                screenSize: "95 inches",
+                resolution: "4K UHD",
+                smartTV: true
+            }
+        },
+        {
+            id: 8,
+            name: "Adidas Backpack",
+            price: 55.99,
+            quantity: 3,
+            category: "Accessories",
+            purchaseDate: "2025-03-08T18:45:00Z",
+            details: {
+                brand: "Adidas",
+                color: "Blue",
+                material: "Polyester",
+                capacity: "30L"
+            },
+        },
+        {
+            id: 9,
+            name: "Logitech MX Master 4",
+            price: 149.99,
+            quantity: 1,
+            category: "Computers",
+            purchaseDate: "2025-03-07T12:30:00Z",
+            details: {
+                brand: "Logitech",
+                color: "Gray",
+                connection: "Wireless",
+                batteryLife: "80 days"
+            }
+        },
+        {
+            id: 10,
+            name: "Apple iPhone 17",
+            price: 1299.99,
+            quantity: 1,
+            category: "Electronics",
+            purchaseDate: "2025-03-11T14:30:00Z", details: {
+                brand: "Apple",
+                color: "Black",
+                storage: "512GB",
+                warranty: "1 year"
+            },
+        }
+    ];
+    loadProducts(products)
+    let inputBar = document.querySelector(".searchBar");
+    inputBar.addEventListener("input", (event) => {
+        let inputValue = event.target.value;
+        if (inputValue.length > 0) {
+            let filteredProducts = []
+            for (let product of products) {
+                if (product.name.toLowerCase().includes(inputValue.toLowerCase())) {
+                    filteredProducts.push(product)
+                }
+            }
+            removeProducts();
+            loadProducts(filteredProducts);
+        } else {
+            removeProducts();
+            loadProducts(products)
+        }
+    })
+
+
+    function removeProducts() {
+        let productCards = document.querySelectorAll(".product-card");
+        for (let productCard of productCards) {
+            productCard.remove();
+        }
+    }
+
+    function loadProducts(products) {
+
+        for (let product of products) {
+            let productCard = document.createElement("div");
+            productCard.innerHTML = `
+            <div class="product-card">
+                <h2 class="product-title">${product.name}</h2>
+                <p><strong>Price:</strong> ${product.price}</p>
+                <p><strong>Quantity:</strong> ${product.quantity}</p>
+                <p><strong>Category:</strong> ${product.category}</p>
+                <p><strong>Purchase Date:</strong> ${product.purchaseDate}</p>
+                <p><strong>Details:</strong> ${JSON.stringify(product.details)}</p>
+            </div>
+
+           `;
+            containerRoot.appendChild(productCard);
+        }
+    }
+</script>
+</body>
+</html>

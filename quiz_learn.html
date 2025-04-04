@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Flag Quiz</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .question img {
+            width: 100%;
+            height: 350px;
+            border-radius: 5px;
+        }
+
+        .options {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .options li button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #3498db;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .options li button:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="start-screen" class="container">
+    <h1>Just Flag</h1>
+    <label for="num-questions">Number of Questions: </label>
+    <input type="number" id="num-questions" value="4" min="1"/>
+    <br/><br/>
+    <button id="start-btn" style="padding: 10px 20px; font-size: 16px;">Start Quiz</button>
+</div>
+
+<div id="quiz-container" class="container hidden">
+    <h1>Flag Quiz</h1>
+    <p>Select the correct country for the flag.</p>
+    <div class="question">
+        <img class="question-image" alt="Flag Image"/>
+    </div>
+    <ul class="options">
+        <li>
+            <button class="option1" type="button">Option 1</button>
+        </li>
+        <li>
+            <button class="option2" type="button">Option 2</button>
+        </li>
+        <li>
+            <button class="option3" type="button">Option 3</button>
+        </li>
+        <li>
+            <button class="option4" type="button">Option 4</button>
+        </li>
+    </ul>
+</div>
+
+<script>
+    const country = [
+        "afghanistan", "brazil", "egypt", "indonesia",
+        "netherlands", "south_africa", "thailand",
+        "united_states", "argentina", "canada", "france",
+        "italy", "nigeria", "south-korea-flag", "turkey", "uzbekistan",
+        "australia", "camaro", "india", "mexico", "saudi_arabia",
+        "salvador", "united-kingdom"
+    ];
+
+    let totalQuestions = 0;
+    let questionCount = 0;
+    let score = 0;
+    let currentCorrectAnswer = "";
+    let answered = false;
+
+    // When the Start Quiz button is clicked, retrieve the number of questions and start the quiz.
+    document.getElementById("start-btn").addEventListener("click", function () {
+        totalQuestions = parseInt(document.getElementById("num-questions").value) || 4;
+        questionCount = 0;
+        score = 0;
+        document.getElementById("start-screen").classList.add("hidden");
+        document.getElementById("quiz-container").classList.remove("hidden");
+        loadQuestion();
+    });
+
+    // Attach event listeners to option buttons (only once).
+    const optionButtons = document.querySelectorAll(".options li button");
+    optionButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            if (answered) return; // Prevent multiple clicks
+            answered = true;
+            if (this.textContent === currentCorrectAnswer) {
+                score++;
+            } else {
+            }
+            questionCount++;
+            if (questionCount < totalQuestions) {
+                setTimeout(loadQuestion, 300);
+            } else {
+
+                setTimeout(() => {
+                    alert("Quiz Over! Your score is " + score + " out of " + totalQuestions);
+                    totalQuestions = parseInt(document.getElementById("num-questions").value) || 4;
+                    questionCount = 0;
+                    score = 0;
+                    document.getElementById("start-screen").classList.remove("hidden");
+                    document.getElementById("quiz-container").classList.add("hidden");
+                }, 300);
+            }
+        });
+    });
+
+    function loadQuestion() {
+        answered = false;
+        const randomCountry = country[Math.floor(Math.random() * country.length)];
+        currentCorrectAnswer = randomCountry;
+        document.querySelector(".question-image").src = "images/" + randomCountry + ".jpg";
+        generateOptions(randomCountry);
+    }
+
+    function generateOptions(correctAnswer) {
+        let options = new Array(4);
+        let correctIndex = Math.floor(Math.random() * 4);
+        options[correctIndex] = correctAnswer;
+        for (let i = 0; i < 4; i++) {
+            if (i !== correctIndex) {
+                let available = country.filter(c => c !== correctAnswer && !options.includes(c));
+                options[i] = available[Math.floor(Math.random() * available.length)];
+            }
+        }
+        document.querySelector(".option1").textContent = options[0];
+        document.querySelector(".option2").textContent = options[1];
+        document.querySelector(".option3").textContent = options[2];
+        document.querySelector(".option4").textContent = options[3];
+    }
+</script>
+</body>
+</html>
