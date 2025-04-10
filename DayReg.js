@@ -3,3 +3,4 @@
  */
 let reg =/azamov/
 
+console.log(reg.test("Azamov"))

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            display: none;
+
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <form id="myForm">
+        <div class="input-group">
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone">
+            <p class="phone-error error">Telipon raqam +998912345678 ko'rinishda bo'lish kerak</p>
+        </div>
+        <div class="input-group">
+            <label for="parol">Parol:</label>
+            <input type="text" id="parol" name="parol">
+            <p class="parol-error error">Parolda kamida 8 ta belgi 1 ta katta harf 1 ta kichik harf va bitta raqam
+                qatnashishi kerak</p>
+        </div>
+        <div class="select-group">
+            <label for="workType">WorkType:</label>
+            <select id="workType" name="workType">
+
+                <option value="dev-type">Developer</option>
+                <option value="teacher-type">Teacher</option>
+                <option value="dentist-type">Dentist</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <p class="email-error error">Xato formatda email kiritdingiz. email thome@gmail.com kabi formatda bo'lishi
+                kerak</p>
+
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+
+    const phone = document.querySelector("#phone")
+    const parol = document.querySelector("#parol")
+    const email = document.querySelector("#email")
+    const form = document.querySelector("#myForm")
+    const workType = document.querySelector("#workType")
+
+    // error element
+    const phoneError = document.querySelector(".phone-error")
+    const parolError = document.querySelector(".parol-error")
+    const emailError = document.querySelector(".email-error")
+
+    // regex
+    const regexphone = /^\+998\d{9}$/
+    const regexparol = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/
+    const regexemail = /^[a-zA-Z\d._%+-]+@[a-zA-Z\d-]+\.[A-Za-z]{2,}$/
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault("")
+        if (regexphone.test(phone.value)) {
+            phoneError.style.display = "none"
+        } else {
+            phoneError.style.display = "block"
+        }
+
+        if (regexparol.test(parol.value)) {
+            parolError.style.display = "none"
+        } else {
+            parolError.style.display = "block"
+        }
+        if (regexemail.test(email.value)) {
+            emailError.style.display = "none"
+        } else {
+            emailError.style.display = "block"
+        }
+
+        workType.addEventListener("change", () => {
+            
+        })
+
+        if (regexphone.test(phone.value) && regexparol.test(parol.value) && regexemail.test(email.value) ) {
+            emailError.style.display = "none"
+            parolError.style.display = "none"
+            phoneError.style.display = "none"
+            window.location.href = "https://www.google.com/"
+            alert("Submitted")
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

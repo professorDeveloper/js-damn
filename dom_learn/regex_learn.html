@@ -1,0 +1,32 @@
+<!--
+  ~ Copyright (c) 2025.  Azamov
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" name="phone" id="phone" placeholder="telefon raqam">
+<input type="text" name="parol" id="parol" placeholder="parol">
+<button class="button">Telefon raqamni tekshirish</button>
+<script>
+    const phone = document.querySelector("#phone")
+    const parol = document.querySelector("#parol")
+    const button = document.querySelector(".button")
+
+    button.addEventListener("click", () => {
+            if (phone.value.match(/^\+998(\d{9})$/)) {
+                alert("Raqamingiz to'g'ri")
+            } else {
+                alert("Raqamingiz to'g'ri emas")
+            }
+        }
+    );
+
+</script>
+
+</body>
+</html>
