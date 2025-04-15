@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f3f3;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 600px;
+            flex-direction: column;
+            background: white;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        input {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        #login-button {
+            padding: 12px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: dodgerblue;
+            color: white;
+            cursor: pointer;
+        }
+
+        #border-button {
+            padding: 12px;
+            font-size: 16px;
+            border: dodgerblue solid 2px;
+            border-radius: 8px;
+            background-color: white;
+            color: dodgerblue;
+        }
+
+        #border-button:hover {
+            background-color: #81b0de;
+            color: white;
+        }
+
+        #login-button:hover {
+            background-color: #89abd2;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+    <form>
+        <input type="email" id="email-input" placeholder="Email" required/>
+        <input type="password" id="password-input" placeholder="Password" required/>
+        <button type="submit" id="login-button">Submit</button>
+        <button type="submit" id="border-button">Do`nt have an account? Sign Up</button>
+    </form>
+</div>
+<script>
+    const loginButton = document.getElementById('login-button');
+    const borderButton = document.getElementById('border-button');
+    const emailInput = document.getElementById('email-input');
+    const passwordInput = document.getElementById("login-button");
+    borderButton.addEventListener("click", () => {
+        window.location.href = "/sign_up_page.html";
+    })
+    loginButton.addEventListener(
+        'click',
+        () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            checkParolEmailIsCorrect(email, password)
+        }
+    )
+
+    function checkParolEmailIsCorrect(email, password) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Invalid email format");
+        } else if (password.length < 8) {
+            alert("Password must be at least 8 characters long");
+        } else {
+            alert("Login successful");
+        }
+    }
+</script>
+</body>
+</html>

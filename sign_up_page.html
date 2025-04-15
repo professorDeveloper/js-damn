@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f3f3;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 600px;
+            flex-direction: column;
+            background: white;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        input {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        #login-button {
+            padding: 12px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: dodgerblue;
+            color: white;
+            cursor: pointer;
+        }
+
+        #border-button {
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            color: dodgerblue;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        #border-button:hover {
+            border: dodgerblue solid 2px;
+            border-radius: 8px;
+            background-color: white;
+            color: dodgerblue;
+
+        }
+
+        #login-button:hover {
+            background-color: #89abd2;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Sign Up</h2>
+    <form>
+        <input type="text" id="username-input" placeholder="Username" required/>
+        <input type="email" id="email-input" placeholder="Email" required/>
+        <input type="password" id="password-input" placeholder="Password" required/>
+        <button type="submit" id="login-button">Submit</button>
+        <button type="submit" id="border-button">Do`nt have an account? Sign Up</button>
+    </form>
+</div>
+</body>
+<script>
+    const loginButton = document.getElementById('login-button');
+    const userNameInput = document.getElementById('username-input');
+    const emailInput = document.getElementById('email-input');
+    const passwordInput = document.getElementById("password-input");
+    const borderButton = document.getElementById('border-button');
+    borderButton.addEventListener("click", () => {
+        window.location.href = "/sign_in_page.html";
+    })
+    loginButton.addEventListener(
+        'click',
+        () => {
+            const userName = userNameInput.value;
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            checkUserParolEmailIsCorrect(userName, email, password)
+        }
+    )
+
+    function checkUserParolEmailIsCorrect(userName, email, password) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Invalid email format");
+        } else if (password.length < 8) {
+            alert("Password must be at least 8 characters long");
+        } else if (userName.length < 3 && userName.length > 20 && userName.includes(" ") ) {
+            alert("Username must be at least 3 characters long");
+        } else {
+            alert("Login successful");
+        }
+    }
+</script>
+</html>

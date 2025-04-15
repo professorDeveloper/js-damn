@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Country Explorer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            display: flex;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .flag {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .country-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0 5px;
+            color: #222;
+        }
+
+        .capital {
+            font-size: 15px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🌍 Country Explorer</h1>
+<div class="search-box">
+    <input type="text" id="search" placeholder="Search for a country...">
+</div>
+
+<div id="countries" class="grid"></div>
+
+<script>
+    let countriesData = [];
+
+    // Fetch and display countries
+    async function loadCountries() {
+        const response = await fetch('https://restcountries.com/v3.1/all?fields=name,capital,flags');
+        const data = await response.json();
+        countriesData = data;
+        renderCountries(data);
+    }
+
+    // Render countries
+    function renderCountries(countries) {
+        const container = document.getElementById('countries');
+        container.innerHTML = '';
+        countries.forEach(country => {
+            const name = country.name?.common || 'Unknown';
+            const capital = country.capital?.[0] || 'No capital';
+            const flag = country.flags?.svg || country.flags?.png || '';
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+          <img src="${flag}" alt="Flag of ${name}" class="flag"/>
+          <div class="country-name">${name}</div>
+          <div class="capital">Capital: ${capital}</div>
+        `;
+            container.appendChild(card);
+        });
+    }
+
+    // Local search filter
+    document.getElementById('search').addEventListener('input', function () {
+        const query = this.value.toLowerCase();
+        const filtered = countriesData.filter(c =>
+            c.name?.common.toLowerCase().includes(query)
+        );
+        renderCountries(filtered);
+    });
+
+    // Load data on start
+    loadCountries();
+</script>
+
+</body>
+</html>

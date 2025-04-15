@@ -1,0 +1,256 @@
+<!--
+  ~ Copyright (c) 2025.  Azamov
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            flex-grow: 1;
+            text-align: center;
+            color: #333;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 0 10px;
+            color: #333;
+        }
+
+
+        .topBar select {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="topBar">
+        <h1>Mahsulotlar Ro'yxati</h1>
+        <label for="categoryFilter"></label>
+        <select id="categoryFilter">
+            <option value="all-product">Barchasi</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Footwear">Footwear</option>
+            <option value="Home Appliances">Home Appliances</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Computers">Computers</option>
+        </select>
+    </div>
+    <br>
+</div>
+
+<script>
+    const products = [
+        {
+            id: 1,
+            name: "Apple iPhone 15",
+            price: 999.99,
+            quantity: 1,
+            category: "Electronics",
+            purchaseDate: "2025-03-11T14:30:00Z",
+            details: {
+                brand: "Apple",
+                color: "Black",
+                storage: "128GB",
+                warranty: "1 year"
+            }
+        },
+        {
+            id: 2,
+            name: "Nike Air Max",
+            price: 120.50,
+            quantity: 2,
+            category: "Footwear",
+            purchaseDate: "2025-03-10T16:15:00Z",
+            details: {
+                brand: "Nike",
+                color: "White",
+                size: "42",
+                material: "Leather"
+            }
+        },
+        {
+            id: 3,
+            name: "Samsung 65\" QLED TV",
+            price: 1299.99,
+            quantity: 1,
+            category: "Home Appliances",
+            purchaseDate: "2025-03-09T10:00:00Z",
+            details: {
+                brand: "Samsung",
+                screenSize: "65 inches",
+                resolution: "4K UHD",
+                smartTV: true
+            }
+        },
+        {
+            id: 4,
+            name: "Adidas Backpack",
+            price: 45.99,
+            quantity: 1,
+            category: "Accessories",
+            purchaseDate: "2025-03-08T18:45:00Z",
+            details: {
+                brand: "Adidas",
+                color: "Blue",
+                material: "Polyester",
+                capacity: "20L"
+            }
+        },
+        {
+            id: 5,
+            name: "Logitech MX Master 3",
+            price: 99.99,
+            quantity: 1,
+            category: "Computers",
+            purchaseDate: "2025-03-07T12:30:00Z",
+            details: {
+                brand: "Logitech",
+                color: "Gray",
+                connection: "Wireless",
+                batteryLife: "70 days"
+            }
+        },
+        {
+            id: 6,
+            name: "Apple iPhone 16",
+            price: 1099.99,
+            quantity: 2,
+            category: "Electronics",
+            purchaseDate: "2025-03-11T14:30:00Z",
+            details: {
+                brand: "Apple",
+                color: "Black",
+                storage: "256GB",
+                warranty: "1 year"
+            }
+        },
+        {
+            id: 7,
+            name: "Samsung 95\" QLED TV",
+            price: 2299.99,
+            quantity: 10,
+            category: "Home Appliances",
+            purchaseDate: "2025-03-09T10:00:00Z",
+            details: {
+                brand: "Samsung",
+                screenSize: "95 inches",
+                resolution: "4K UHD",
+                smartTV: true
+            }
+        },
+        {
+            id: 8,
+            name: "Adidas Backpack",
+            price: 55.99,
+            quantity: 3,
+            category: "Accessories",
+            purchaseDate: "2025-03-08T18:45:00Z",
+            details: {
+                brand: "Adidas",
+                color: "Blue",
+                material: "Polyester",
+                capacity: "30L"
+            },
+        },
+        {
+            id: 9,
+            name: "Logitech MX Master 4",
+            price: 149.99,
+            quantity: 1,
+            category: "Computers",
+            purchaseDate: "2025-03-07T12:30:00Z",
+            details: {
+                brand: "Logitech",
+                color: "Gray",
+                connection: "Wireless",
+                batteryLife: "80 days"
+            }
+        },
+        {
+            id: 10,
+            name: "Apple iPhone 17",
+            price: 1299.99,
+            quantity: 1,
+            category: "Electronics",
+            purchaseDate: "2025-03-11T14:30:00Z", details: {
+                brand: "Apple",
+                color: "Black",
+                storage: "512GB",
+                warranty: "1 year"
+            },
+        }
+    ];
+    const containerDiv = document.querySelector(".container")
+    const filterSelect = document.querySelector("#categoryFilter")
+
+    filterSelect.addEventListener("change", (event) => {
+        if (event.target.value !== "all-product") {
+            const filteredList = products.filter((product) => product.category === event.target.value)
+            removeProducts()
+            loadProducts(filteredList)
+        } else {
+            removeProducts()
+            loadProducts(products)
+        }
+    })
+
+    loadProducts(products)
+
+    function removeProducts() {
+        let productElements = document.querySelectorAll(".product-card")
+        for (const productElement of productElements) {
+            productElement.remove()
+        }
+    }
+
+    function loadProducts(products) {
+        for (const product of products) {
+            const newElement = document.createElement("div")
+            newElement.innerHTML = `
+           <div class="product-card">
+                <h2 class="product-title">${product.name}</h2>
+                <p><strong>Price:</strong> ${product.price}</p>
+                <p><strong>Quantity:</strong> ${product.quantity}</p>
+                <p><strong>Category:</strong> ${product.category}</p>
+                <p><strong>Purchase Date:</strong> ${product.purchaseDate}</p>
+                <p><strong>Details:</strong> ${product.details['brand']}</p>
+            </div>
+            `
+            containerDiv.appendChild(newElement)
+        }
+    }
+</script>
+</body>
+</html>
